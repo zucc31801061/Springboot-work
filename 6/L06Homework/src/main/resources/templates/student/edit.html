@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+    <![endif]-->
+
+</head>
+<body class="container">
+
+
+<form class="form-horizontal" th:action="@{/student/}+${student.id}" method="post">
+    <input type="hidden" name="_method" value="put"/>
+
+
+    <input type="hidden" id="id" name="id" th:field="${student.id}"/>
+
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">name</label>
+        <div class="col-sm-10">
+            <input type="text" id="name" name="name" th:field="${student.name}"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="sid" class="col-sm-2 control-label">sid</label>
+        <div class="col-sm-10">
+            <input type="text" id="sid" name="sid" th:field="${student.sid}"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="sex" class="col-sm-2 control-label">sex</label>
+        <div class="col-sm-10">
+            <input type="text" id="sex" name="sex" th:field="${student.sex}"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="cardId" class="col-sm-2 control-label">cardId</label>
+        <div class="col-sm-10">
+            <input type="text" id="cardId" name="cardId" th:field="${student.cardId}"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">email</label>
+        <div class="col-sm-10">
+            <input type="text" id="email" name="email" th:field="${student.email}"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" value="提交" class="btn btn-info"/>
+            <input type="reset" value="重置" class="btn btn-info"/>
+        </div>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "zucc",
+      "type": "code.ZuccConfig",
+      "sourceType": "code.ZuccConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "zucc.year",
+      "type": "java.lang.Integer",
+      "sourceType": "code.ZuccConfig"
+    }
+  ],
+  "hints": []
+}

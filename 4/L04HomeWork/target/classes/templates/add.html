@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--thymeleaf模板支持-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加学生信息</title>
+    <style>
+        .warn{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<a th:href="@{'/'}">返回首页</a>
+<form th:action="@{/add}" th:object="${student}" method="post">
+    <div>
+        <div>
+            <span>学号:</span>
+            <span><input type="text" th:field="*{id}"/></span>
+            <span class="warn" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">学号有误</span>
+        </div>
+        <div>
+            <span>姓名:</span>
+            <span><input type="text" th:field="*{name}"/></span>
+            <span class="warn" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">姓名错误</span>
+        </div>
+        <div>
+            <span>性别:</span>
+            <span><input type="text" th:field="*{sex}"/></span>
+            <span class="warn" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">性别错误</span>
+        </div>
+        <div>
+            <span>身份证:</span>
+            <span><input type="text" th:field="*{cardId}"/></span>
+            <span class="warn" th:if="${#fields.hasErrors('cardId')}" th:errors="*{cardId}">身份证错误</span>
+        </div>
+        <div>
+            <span>邮箱:</span>
+            <span><input TYPE="text" th:field="*{email}"/></span>
+            <span class="warn" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">邮箱错误</span>
+        </div>
+        <div>
+            <span>
+                <button type="submit">提交</button>
+            </span>
+        </div>
+    </div>
+</form>
+</body>
+</html>

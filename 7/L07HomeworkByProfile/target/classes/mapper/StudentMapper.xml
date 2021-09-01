@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zucc.mapper.StudentMapper">
+    <resultMap id="messageMap" type="Student">
+        <id column="id" property="id"/>
+        <result property="name" column="name"/>
+        <result property="number" column="number"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <resultMap id="studentWithResume" type="Student">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="number" column="number" />
+        <result property="email" column="email"/>
+        <collection property="resumeList" ofType="Resume">
+            <id property="id" column="r_id" />
+            <result property="content" column="r_content" />
+            <result property="sid" column="sid" />
+        </collection>
+    </resultMap>
+
+    <!-- 列表 -->
+    <select id="queryAll" resultMap="messageMap">
+        SELECT * FROM student
+    </select>
+    <!-- 增加 -->
+    <insert id="addStudent" parameterType="Student">
+        INSERT INTO student(id,name,number,email)
+        VALUES (#{id},#{name},#{number},#{email})
+    </insert>
+    <!-- 删除 -->
+    <delete id="deleteStudent" parameterType="Student">
+        DELETE FROM student
+        WHERE id = #{id}
+    </delete>
+    <!-- 查找 -->
+    <select id="findStudent" resultMap="studentWithResume">
+        SELECT s.*,r.id r_id,r.content r_content,r.s_id
+        FROM student s,resume r
+        WHERE s.id=r.s_id AND s.id = #{id}
+    </select>
+    <!-- 修改 -->
+    <update id="updateStudent" parameterType="Student">
+        UPDATE student
+        <set>
+            <if test="name !=null and name !=''">name=#{name},</if>
+            <if test="number !=null and number !=''">number=#{number},</if>
+            <if test="email !=null and email !=''">email=#{email}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+</mapper>

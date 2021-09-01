@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zucc.mapper.ResumeMapper">
+    <resultMap id="messageMap" type="Resume">
+        <id column="id" property="id"/>
+        <result property="content" column="content"/>
+        <result property="sid" column="sid"/>
+    </resultMap>
+    <!-- 增加 -->
+    <insert id="addResume" parameterType="Resume">
+        INSERT INTO resume(id,content,s_id)
+        VALUES (#{id},#{content},#{sid})
+    </insert>
+    <!-- 删除 -->
+    <delete id="deleteResume" parameterType="Resume">
+        DELETE FROM resume
+        where id = #{id}
+    </delete>
+    <!-- 查找 -->
+    <select id="findResume" resultMap="messageMap">
+        SELECT * FROM resume
+        WHERE id = #{id}
+    </select>
+    <!-- 修改 -->
+    <update id="updateResume" parameterType="Resume">
+        UPDATE resume
+        <set>
+            <if test="content !=null and content !=''">content=#{content}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+</mapper>

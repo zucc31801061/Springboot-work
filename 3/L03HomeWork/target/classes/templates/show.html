@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--thymeleaf模板支持-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="tab">
+    <h1>学生信息管理系统</h1>
+    <table border="1" >
+        <tr>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>身份证号</th>
+            <th>邮箱</th>
+        </tr>
+        <tr th:each="stu : ${students}">
+            <td th:text="${stu.id}"></td>
+            <td th:text="${stu.name}"></td>
+            <td th:text="${stu.sex}"></td>
+            <td th:text="${stu.cardId}"></td>
+            <td th:text="${stu.email}"></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a th:href="@{'/'}">返回首页</a>
+    </div>
+    <div>
+        <a th:href="@{'/show?page='+${index - 1}}"  th:if="${index}>0">上一页</a>
+        <div th:text="'当前页码: '+${index + 1}+'/'+${sum + 1}"></div>
+        <a th:href="@{'/show?page='+${index + 1}}" th:if="${flag}==0">下一页</a>
+    </div>
+</div>
+</body>
+</html>
